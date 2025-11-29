@@ -198,8 +198,8 @@ curl -X POST http://localhost:5000/api/products \
 
 ## 👥 Contribuidores
 
-- **[Tu Nombre]** - Desarrollo Backend
-- **[Compañero/a]** - Desarrollo Backend
+- **Carnascari Solange** - Desarrollo Backend / Frontend
+- **Carrizo Eduardo** - Desarrollo Backend / Frontend
 
 ## 📄 Licencia
 

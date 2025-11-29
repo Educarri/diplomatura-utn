@@ -4,6 +4,7 @@ import { logger } from './logger.js';
 
 export const connectDB = async () => {
   try {
+    console.log('Conectando a MongoDB con URI:', config.mongodbUri ? '[REDACTED]' : config.mongodbUri);
     const conn = await mongoose.connect(config.mongodbUri);
     logger.info(`MongoDB conectado: ${conn.connection.host}`);
   } catch (error) {
