@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: diplomatura-backend
+    env: node
+    plan: free
+    region: oregon
+    branch: develop
+    buildCommand: cd Backend && npm install
+    startCommand: cd Backend && npm run start
+    pullRequestPreviews: false
+    autoDeploy: true
+    healthCheckPath: "/"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Do NOT include secrets here. Set the following variables in Render's
+      # Dashboard after creating the service:
+      # - MONGODB_URI (or DB_URI & DB_NAME)
+      # - JWT_SECRET
+      # - FRONTEND_URL
