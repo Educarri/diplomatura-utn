@@ -1,5 +1,21 @@
+import fs from 'fs';
+import path from 'path';
 import winston from 'winston';
 import { config } from './config.js';
+
+// Ensure `logs` directory exists so file transports can open files.
+const logsDir = path.resolve(process.cwd(), 'logs');
+if (!fs.existsSync(logsDir)) {
+  try {
+    fs.mkdirSync(logsDir, { recursive: true });
+  } catch (err) {
+    // If creating the logs directory fails, print a warning but allow
+    // the application to continue so the error can be handled by
+    // Winston or the runtime environment.
+    // eslint-disable-next-line no-console
+    console.warn('No se pudo crear el directorio de logs:', err.message);
+  }
+}
 
 const levels = {
   error: 0,
