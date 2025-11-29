@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { productService } from '../../services/productService';
+import * as productService from '../../services/productService';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -15,8 +15,8 @@ const HomePage = () => {
 
   const loadProducts = async () => {
     try {
-      const data = await productService.getAll(1, 6);
-      setProducts(data.data);
+      const data = await productService.getProducts();
+      setProducts(Array.isArray(data) ? data.slice(0, 6) : []);
     } catch (error) {
       console.error('Error al cargar productos:', error);
     } finally {

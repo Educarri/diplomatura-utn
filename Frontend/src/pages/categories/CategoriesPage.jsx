@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useCategories } from '../../hooks/useCategories';
-//import CategoryCard from './CategoryCard';
-//import CategoryForm from './CategoryForm';
+import CategoryCard from './CategoryCard';
+import CategoryForm from './CategoryForm';
 import './CategoriesPage.css';
 
 const CategoriesPage = () => {

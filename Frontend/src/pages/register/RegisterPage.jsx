@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { authService } from "../../services/authService";
+import "./RegisterPage.css";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,21 +38,12 @@ const RegisterPage = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.message || "Error en el registro");
-      }
-
+      await authService.register(formData.name, formData.email, formData.password);
       setSuccess("Usuario registrado correctamente ✅");
       setFormData({ name: "", email: "", password: "", confirmPassword: "" });
+      setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || err.message || "Error en el registro");
     }
   };
 
